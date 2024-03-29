@@ -37,6 +37,12 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     var storedEmail = localStorage.getItem("email");
     var storedPassword = localStorage.getItem("password");
 
+    // Check if email and password fields are filled
+    if (!email || !password) {
+        alert("Please fill in both email and password fields.");
+        return; // Stop the login process if fields are not filled
+    }
+
     if (email === storedEmail && password === storedPassword) {
         alert("Login successful!");
         // Redirect or perform any other action after successful login
