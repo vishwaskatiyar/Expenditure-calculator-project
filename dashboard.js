@@ -1,5 +1,5 @@
-import incomeObj from './income.js';
-import expenseObj from './expense.js';
+import incomeObj from './script/income.js';
+import expenseObj from './script/expense.js';
 
 
 
