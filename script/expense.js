@@ -76,20 +76,21 @@ class Expense {
             const exists = acc.some(item => item.tag === curr.tag);
             if (exists) {
                 const oldObj = acc.filter(item => item.tag === curr.tag);
-                oldObj[0].expense =
-                    parseInt(oldObj[0].expense) + parseInt(curr.expense);
+                oldObj[0].expense += parseInt(curr.expense);
             } else {
-                newObj.tag = curr.tag;
-                newObj.expense = parseInt(curr.expense);
-                newObj.total = this.tags.filter(
-                    item => item.category === curr.tag
-                )[0].budget;
-                acc.push(newObj);
+                const budgetObj = this.tags.find(item => item.category === curr.tag);
+                if (budgetObj) {
+                    newObj.tag = curr.tag;
+                    newObj.expense = parseInt(curr.expense);
+                    newObj.total = budgetObj.budget;
+                    acc.push(newObj);
+                }
             }
             return acc;
         }, []);
         return expenseList;
     }
+
     getTotalExpense() {
         let totalExpense = 0;
         this.expenses.forEach(el => {
