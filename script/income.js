@@ -199,6 +199,7 @@ class Income {
             this.incomeChartTableBody.insertAdjacentElement('beforeEnd', tr);
             incomeLabels.push(item.source);
             incomeData.push(item.income);
+
         });
         const data = {
             labels: incomeLabels,
@@ -299,7 +300,9 @@ class Income {
         const myChart = new Chart(this.incBudComparisonChart, config);
     }
     initiate() {
-        document.getElementById('incomeValue').textContent = this.income;
+        // console.log(this.income).................................................................taxt value will be calculated from here
+        let a = document.getElementById('incomeValue').textContent = this.income;
+        console.log(a);
         document.getElementById('incomeBudgetValue').textContent = this.budget;
         this.mapBudgetTable();
         this.addIncomeChart();
