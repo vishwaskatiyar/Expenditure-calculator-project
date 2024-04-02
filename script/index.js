@@ -1,4 +1,5 @@
 // script.js
+
 const signInBtn = document.getElementById("sign-in-btn");
 const signUpBtn = document.getElementById("sign-up-btn");
 const container = document.querySelector(".container");

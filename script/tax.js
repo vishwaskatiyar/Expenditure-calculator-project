@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let calculateTaxBtn = document.getElementById('calculateTaxBtn');
     let taxResult = document.getElementById('taxResult');
     let amountLeftDisplay = document.getElementById('amountLeftDisplay');
-    let payButton = document.getElementById('payButton');
+    let payButton = document.getElementById('rzp-button1');
 
     if (storedValue !== null) {
         let parsedValue = JSON.parse(storedValue);
@@ -20,20 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Define tax rates
         let taxRates = [
-            { threshold: 4000, rate: 0.20 },
-            { threshold: 3000, rate: 0.15 },
-            { threshold: 2000, rate: 0.10 },
-            { threshold: 1000, rate: 0.05 }
+            { threshold: 40000, rate: 0.20 },
+            { threshold: 30000, rate: 0.15 },
+            { threshold: 20000, rate: 0.10 },
+            { threshold: 10000, rate: 0.05 }
         ];
-
-        // Display tax rates in table
-        taxRates.forEach(rate => {
-            let row = taxRateTableBody.insertRow();
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            cell1.textContent = `Income above ₹${rate.threshold.toFixed(2)}`;
-            cell2.textContent = `${rate.rate * 100}%`;
-        });
 
         // Calculate tax and amount left
         calculateTaxBtn.addEventListener('click', function () {
@@ -54,14 +45,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Show pay button
             payButton.style.display = 'block';
-            payButton.addEventListener('click', function () {
-                // Simulate payment processing
-                alert('Payment processed successfully!');
-                payButton.disabled = true;
 
-                // Reset tax amount
-                taxResult.textContent = 'Tax to pay: ₹0.00';
+            // Razorpay integration
+            parsedValue.forEach((item, index) => {
+                let options = {
+                    "key": "rzp_test_JFtNezEfPeo6oi",
+                    "amount": tax * 100, // Assuming you have tax amount stored in 'item.tax'
+                    "currency": "INR",
+                    "name": "Acme Corp", // your business name
+                    "description": "Test Transaction",
+                    "image": "https://example.com/your_logo",
+                    "order_id": item.order_id, // Assuming you have the order ID stored in 'item.order_id'
+                    "handler": function (response) {
+                        taxResult.textContent = `Tax to pay: ₹0.00`;
+
+
+                        alert(response.razorpay_payment_id);
+                        // alert(response.razorpay_order_id);
+                        // alert(response.razorpay_signature)
+                    },
+                    "prefill": {
+                        "name": "Vishwas Katiyar", // your customer's name
+                        "email": "vishwas.kumar@example.com",
+                        "contact": "9000090000"
+                    },
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+
+                let rzp = new Razorpay(options);
+
+                // Set onclick event handler for the Razorpay button
+                let rzpButton = document.getElementById(`rzp-button${index + 1}`);
+                if (rzpButton) {
+                    rzpButton.onclick = function (e) {
+                        rzp.open();
+                        e.preventDefault();
+                    };
+                }
             });
+        });
+
+        // Display tax rates in table
+        taxRates.forEach(rate => {
+            let row = taxRateTableBody.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            cell1.textContent = `Income above ₹${rate.threshold.toFixed(2)}`;
+            cell2.textContent = `${rate.rate * 100}%`;
         });
     }
 });
