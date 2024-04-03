@@ -120,7 +120,7 @@ var taxBtn = document.getElementById('taxBtn');
 // Add event listener to the button
 taxBtn.addEventListener('click', function () {
     // Redirect to another page
-    window.location.href = '/tax.html';
+    window.location.href = './tax.html';
 });
 
 
