@@ -3,6 +3,7 @@ import expenseObj from './script/expense.js';
 
 
 
+
 // incomeTracker.initiate();
 
 class Tracker {
@@ -12,6 +13,8 @@ class Tracker {
         this.incomeBtn = document.getElementById('incomeBtn');
         this.expenseBtn = document.getElementById('expenseBtn');
         this.summaryBtn = document.getElementById('summaryBtn');
+
+
         this.incomeDiv = document.querySelector('.income-container');
         this.expenseDiv = document.querySelector('.expense-container');
         this.summaryDiv = document.querySelector('.summary-container');
@@ -99,7 +102,29 @@ class Tracker {
         this.getCategoryExpenses();
         this.getSavings();
     }
+    calculateTax() {
+        // Call tax calculation function from taxCalculator module
+        const taxAmount = taxCalculator.calculateTax(/* Pass required parameters */);
+
+        console.log('Tax Amount:', taxAmount);
+    }
+
+
+
+
+
 }
+// Get the button element
+var taxBtn = document.getElementById('taxBtn');
+
+// Add event listener to the button
+taxBtn.addEventListener('click', function () {
+    // Redirect to another page
+    window.location.href = '/tax.html';
+});
+
+
+
 
 const tracker = new Tracker();
 tracker.initiate();

@@ -12,7 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./login/chatbot.css">
     <title>Expense Tracker</title>
+    <script src="https://kit.fontawesome.com/93c80c88e0.js" crossorigin="anonymous"></script>
+    <script src="./script/chatbot.js" type="module"></script>
 </head>
 
 <body>
@@ -22,6 +25,7 @@
                 <button class="add-btn active-tab" id="summaryBtn">Summary</button>
                 <button class="add-btn" id="expenseBtn">Expenses</button>
                 <button class="add-btn " id="incomeBtn">Income</button>
+                <button class="add-btn" id="taxBtn">Pay Tax</button>
             </div>
         </div>
         <div class="element-container">
@@ -261,8 +265,36 @@
                 </div>
             </div>
         </div>
+        <div class="chatbot">
+            <header>
+                <h2>Chatbot</h2>
+            </header>
+            <ul class="chatbox">
+                <li class="chat incoming">
+                    <span> <i class="fa-solid fa-robot"></i></span>
+                    <p>Hi there How can I help you</p>
+                </li>
+            </ul>
+            <div class="chat-input">
+                <textarea placeholder="Enter a message...."></textarea>
+                <span id="sent-btn"><i class="fa-solid fa-share"></i></span>
+            </div>
+        </div>
+        <br />
+        <button class="chatbot toggle-button" style="
+            display: block;
+            padding: 5px;
+            position: fixed;
+            bottom: 30px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+          ">
+            chat
+        </button>
     </div>
     <script src="./script/tax.js"></script>
+
 </body>
 
 </html>
