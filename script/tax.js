@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Razorpay integration
             parsedValue.forEach((item, index) => {
                 let options = {
-                    "key": "rzp_test_JFtNezEfPeo6oi",
+                    "key": "rzp_test_ghXPZiJim09ftB",
                     "amount": tax * 100, // Assuming you have tax amount stored in 'item.tax'
                     "currency": "INR",
                     "name": "Acme Corp", // your business name

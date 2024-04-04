@@ -1,11 +1,6 @@
 import incomeObj from './script/income.js';
 import expenseObj from './script/expense.js';
 
-
-
-
-// incomeTracker.initiate();
-
 class Tracker {
     constructor() {
         this.incomeObj = incomeObj;
@@ -14,25 +9,26 @@ class Tracker {
         this.expenseBtn = document.getElementById('expenseBtn');
         this.summaryBtn = document.getElementById('summaryBtn');
 
-
         this.incomeDiv = document.querySelector('.income-container');
         this.expenseDiv = document.querySelector('.expense-container');
         this.summaryDiv = document.querySelector('.summary-container');
         this.tabDivs = [this.incomeDiv, this.expenseDiv, this.summaryDiv];
         this.tabBtns = [this.incomeBtn, this.expenseBtn, this.summaryBtn];
 
-        this.summaryBudgetTableBody = document.getElementById(
-            'summaryIncomeBudgetTableBody'
-        );
-        this.summaryCategoryExpense = document.getElementById(
-            'summaryCatExpensesList'
-        );
+        this.summaryBudgetTableBody = document.getElementById('summaryIncomeBudgetTableBody');
+        this.summaryCategoryExpense = document.getElementById('summaryCatExpensesList');
 
         //event handlers
         this.incomeBtn.addEventListener('click', this.showTab.bind(this));
         this.expenseBtn.addEventListener('click', this.showTab.bind(this));
         this.summaryBtn.addEventListener('click', this.showTab.bind(this));
+
+        // Wait for DOMContentLoaded event before initiating the tracker
+        document.addEventListener('DOMContentLoaded', () => {
+            this.initiate(); // Call initiate method once DOM is fully loaded
+        });
     }
+
     showTab(e) {
         const clickedTab = e.target.id;
         const container = clickedTab.split('Btn')[0];
@@ -49,6 +45,7 @@ class Tracker {
             btn.classList.remove('active-tab');
         });
     }
+
     getBudgetList() {
         const budgetCategories = this.incomeObj.budgetCategories;
         budgetCategories.forEach(item => {
@@ -57,6 +54,7 @@ class Tracker {
             this.summaryBudgetTableBody.insertAdjacentElement('beforeBegin', tr);
         });
     }
+
     getCategoryExpenses() {
         const expenseList = this.expenseObj.getcategoryExpenses();
         const exhaustedDivWidthConstant = 322;
@@ -87,6 +85,7 @@ class Tracker {
             this.summaryCategoryExpense.insertAdjacentElement('afterbegin', row);
         });
     }
+
     getSavings() {
         const income = this.incomeObj.income;
         const expense = this.expenseObj.getTotalExpense();
@@ -94,6 +93,7 @@ class Tracker {
         const savingSpan = document.getElementById('summarySpan');
         savingSpan.textContent = saving;
     }
+
     initiate() {
         console.log('initiating main tracker');
         this.incomeObj.initiate();
@@ -102,29 +102,23 @@ class Tracker {
         this.getCategoryExpenses();
         this.getSavings();
     }
+
     calculateTax() {
         // Call tax calculation function from taxCalculator module
         const taxAmount = taxCalculator.calculateTax(/* Pass required parameters */);
 
         console.log('Tax Amount:', taxAmount);
     }
-
-
-
-
-
 }
+
 // Get the button element
-var taxBtn = document.getElementById('taxBtn');
+const taxBtn = document.getElementById('taxBtn');
 
 // Add event listener to the button
-taxBtn.addEventListener('click', function () {
+taxBtn.addEventListener('click', () => {
     // Redirect to another page
     window.location.href = './tax.html';
 });
 
-
-
-
+// Create an instance of Tracker
 const tracker = new Tracker();
-tracker.initiate();

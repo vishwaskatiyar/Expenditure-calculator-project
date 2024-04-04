@@ -29,7 +29,7 @@ p {
   display: flex;
 }
 .header-headings {
-  background-color: #e5e0e033;
+  background-color: #62d8f5dd;
   padding: 1rem;
   width: 100%;
   display: flex;
@@ -53,16 +53,20 @@ p {
 .info-summary {
   display: flex;
   height: 20rem;
-  width: 30rem;
-  background-color: var(--white);
+  width: 35rem;
+  background-color: var(--silver);
   border-radius: 20px;
   padding: 1rem;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .detail {
   margin-top: 2rem;
   display: flex;
   justify-content: space-around;
+  /* align-items: center; */
 }
 
 .detail-category,
@@ -230,15 +234,19 @@ select {
 .summary-saving span {
   font-weight: 700;
 }
-
-@media only screen and (max-width: 1187px) {
+@media only screen and (max-width: 1115px) {
   .container {
-    margin: 12px;
-    padding: 12px;
+    margin: 16px;
+    padding: 16px;
   }
 
   .header-headings {
-    gap: 50px;
+    gap: 75px;
+  }
+
+  .info-add-new,
+  .info-summary {
+    width: 100%;
   }
 
   .header-profile {
@@ -261,17 +269,54 @@ select {
   .detail-summary-recents {
     width: 100%;
     height: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   #incomeChart,
   #incBudCompareChart {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     width: 100%;
-    height: 400px !important;
+    height: 300px !important;
   }
 }
-@media only screen and (max-width: 570px) {
+
+@media only screen and (max-width: 768px) {
+  .header-headings {
+    gap: 30px;
+  }
+
+  .header-profile {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .info,
+  .detail {
+    flex-direction: column;
+  }
+
+  .info-add-new,
+  .info-summary,
+  .detail-category,
+  .detail-recents,
+  .detail-expense-category,
+  .detail-expense-recents,
+  .detail-summary-category,
+  .detail-summary-recents {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  #incomeChart,
+  #incBudCompareChart {
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 300px !important;
+  }
+}
+
+@media only screen and (max-width: 576px) {
   .container {
     margin: 12px;
     padding: 12px;
@@ -281,6 +326,11 @@ select {
     gap: 20px;
   }
 
+  .info-add-new,
+  .info-summary {
+    width: 100%;
+  }
+
   .header-profile {
     width: 100%;
     justify-content: center;
@@ -308,6 +358,97 @@ select {
   #incBudCompareChart {
     margin-bottom: 1rem;
     width: 100%;
-    height: 400px !important; /* You may adjust height as needed */
+    height: 250px !important;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .container {
+    margin: 8px;
+    padding: 8px;
+  }
+
+  .header-headings {
+    gap: 15px;
+  }
+
+  .info-add-new,
+  .info-summary {
+    width: 100%;
+  }
+
+  .header-profile {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .info,
+  .detail {
+    flex-direction: column;
+  }
+
+  .info-add-new,
+  .info-summary,
+  .detail-category,
+  .detail-recents,
+  .detail-expense-category,
+  .detail-expense-recents,
+  .detail-summary-category,
+  .detail-summary-recents {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  #incomeChart,
+  #incBudCompareChart {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 200px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .container {
+    margin: 6px;
+    padding: 6px;
+  }
+
+  .header-headings {
+    gap: 10px;
+  }
+
+  .info-add-new,
+  .info-summary {
+    width: 100%;
+  }
+
+  .header-profile {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .info,
+  .detail {
+    flex-direction: column;
+  }
+
+  .info-add-new,
+  .info-summary,
+  .detail-category,
+  .detail-recents,
+  .detail-expense-category,
+  .detail-expense-recents,
+  .detail-summary-category,
+  .detail-summary-recents {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.3rem;
+  }
+
+  #incomeChart,
+  #incBudCompareChart {
+    margin-bottom: 0.3rem;
+    width: 100%;
+    height: 150px !important;
   }
 }
